@@ -1,0 +1,33 @@
+{
+    "name": "miaotiao/config",
+    "description": "laravel-admin-ext,config powerful",
+    "type": "library",
+    "keywords": ["laravel-admin", "extension"],
+    "homepage": "https://github.com/miaotiao/laravel-admin-config",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "miaotiao",
+            "email": "1397701721@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "encore/laravel-admin": ">=1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Miaotiao\\Config\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Miaotiao\\Config\\ConfigServiceProvider"
+            ]
+        }
+    }
+}
