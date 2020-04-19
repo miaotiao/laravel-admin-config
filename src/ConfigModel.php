@@ -19,6 +19,4 @@ class ConfigModel extends Model
 
         $this->setTable(config('admin.extensions.config.table', 'sys_config'));
     }
-
-
 }
