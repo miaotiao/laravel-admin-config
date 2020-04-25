@@ -216,7 +216,7 @@ class ConfigController
             $config->save();
         }
         $this->clearCache();
-        admin_toastr('保存成功', 'success');
+        admin_toastr(__('admin.save_succeeded'), 'success');
 
         return back();
     }
