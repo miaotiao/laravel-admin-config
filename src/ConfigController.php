@@ -26,6 +26,7 @@ class ConfigController
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -39,7 +40,7 @@ class ConfigController
     /**
      * Edit interface.
      *
-     * @param int $id
+     * @param int     $id
      * @param Content $content
      *
      * @return Content
@@ -73,7 +74,6 @@ class ConfigController
             ->header('Config')
             ->description('detail')
             ->body(Admin::show(ConfigModel::findOrFail($id), function (Show $show) {
-
                 $show->field('id', __('Id'));
                 $show->field('name', __('Name'));
                 $show->field('title', __('Title'));
@@ -133,7 +133,7 @@ class ConfigController
         $form->textarea('value', __('Value'));
         $form->number('status', __('Status'))->default(1);
 
-        $form->saved(function (){
+        $form->saved(function () {
             $this->clearCache();
         });
 
@@ -142,7 +142,7 @@ class ConfigController
 
     public function settingForm(Content $content)
     {
-        $lists    = ConfigModel::all();
+        $lists = ConfigModel::all();
         $groupArr = dbConfig('sys_config_group');
 
         $groups = $lists->groupBy('group')->sortBy('sort desc');
@@ -152,9 +152,9 @@ class ConfigController
         foreach ($groups as $key => $val) {
             $form->tab($groupArr[$key], function ($form) use ($val) {
                 foreach ($val as $config) {
-                    $name   = $config->name;
-                    $title  = $config->title;
-                    $value  = $config->value;
+                    $name = $config->name;
+                    $title = $config->title;
+                    $value = $config->value;
                     $remark = $config->remark;
                     switch ($config->type) {
                         case '1':
@@ -165,7 +165,7 @@ class ConfigController
                             $formObj = $form->textarea($name, $title)->rows(3);
                             break;
                         case '5':
-                            $option  = parse_config_attr($config->extra);
+                            $option = parse_config_attr($config->extra);
                             $formObj = $form->radio($name, $title)->options($option);
                             break;
                         default:
@@ -199,21 +199,25 @@ class ConfigController
     }
 
     /**
-     * 保存配置
+     * 保存配置.
+     *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function settingSave(Request $request)
     {
         $input = $request->except('_token');
         foreach ($input as $key => $conf) {
-            $config        = ConfigModel::where('name', $key)->firstOrFail();
+            $config = ConfigModel::where('name', $key)->firstOrFail();
             $config->value = $conf ?? '';
             $config->save();
         }
         $this->clearCache();
         admin_toastr('保存成功', 'success');
+
         return back();
     }
 
@@ -221,6 +225,4 @@ class ConfigController
     {
         cache()->forget('cache_db_config');
     }
-
-
 }

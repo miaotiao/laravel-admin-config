@@ -10,7 +10,7 @@ class Config extends Extension
     public static function load()
     {
         $cacheDbConfig = cache()->remember('cache_db_config', 86400, function () {
-            $configs    = ConfigModel::where('status', 1)->get();
+            $configs = ConfigModel::where('status', 1)->get();
             $systemConf = [];
             foreach ($configs as $config) {
                 $configVal = $config->value;
@@ -19,6 +19,7 @@ class Config extends Extension
                 }
                 $systemConf[$config->name] = $configVal;
             }
+
             return $systemConf;
         });
         config(['dbConfig' => $cacheDbConfig]);
@@ -48,8 +49,8 @@ class Config extends Extension
                 config('admin.extensions.config.name', 'config'),
                 $configControllerPath
             );
-            $router->get('system/setting', $configControllerPath . '@settingForm')->name('admin.setting');
-            $router->post('system/setting/save', $configControllerPath . '@settingSave');
+            $router->get('system/setting', $configControllerPath.'@settingForm')->name('admin.setting');
+            $router->post('system/setting/save', $configControllerPath.'@settingSave');
         });
     }
 
