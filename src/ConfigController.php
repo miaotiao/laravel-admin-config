@@ -97,9 +97,7 @@ class ConfigController
         $grid = new Grid(new ConfigModel());
 
         $grid->column('id', __('Id'))->sortable();
-        $grid->column('name',__('Name'))->display(function ($name) {
-            return "<a tabindex=\"0\" class=\"btn btn-xs btn-twitter\" role=\"button\" data-toggle=\"popover\" data-html=true title=\"Usage\" data-content=\"<code>dbConfig('$name');</code>\">$name</a>";
-        });
+        $grid->column('name',__('Name'));
         $grid->column('title', __('Title'));
         $grid->column('sort', __('Sort'))->sortable();
         $grid->column('type', __('Type'));

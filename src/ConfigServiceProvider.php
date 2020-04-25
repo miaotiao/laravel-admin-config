@@ -14,8 +14,9 @@ class ConfigServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
             $this->publishes([__DIR__.'/../database/seeds'=>database_path('seeds')]);
+        }else{
+            Config::load();
         }
-
         Config::boot();
     }
 }

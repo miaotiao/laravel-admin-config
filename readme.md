@@ -9,11 +9,10 @@ $ php artisan vendor:publish --provider="Miaotiao\Config\ConfigServiceProvider"
 
 $ php artisan migrate
 
+$ composer dump-autoload
+
 $ php artisan db:seed --class=ConfigSeeder
 ```
-
-Open `app/Providers/AppServiceProvider.php`, and call the `Config::load()` method within the `boot` method:
-
 
 
 Then run: 
@@ -29,8 +28,7 @@ Open `http://your-host/admin/setting`
 After add config in the panel, use `dbConfig($key)` to get value you configured.
 
 ## Todo
--   判断是否使用的是 admin 的数据库配置
--   增加test测试
+-   使用点语法获取配置信息。
 
 License
 ------------
