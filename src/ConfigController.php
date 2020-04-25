@@ -97,7 +97,7 @@ class ConfigController
         $grid = new Grid(new ConfigModel());
 
         $grid->column('id', __('Id'))->sortable();
-        $grid->column('name',__('Name'));
+        $grid->column('name', __('Name'));
         $grid->column('title', __('Title'));
         $grid->column('sort', __('Sort'))->sortable();
         $grid->column('type', __('Type'));
