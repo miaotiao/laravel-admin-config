@@ -97,13 +97,13 @@ class ConfigController
         $grid = new Grid(new ConfigModel());
 
         $grid->column('id', __('Id'))->sortable();
-        $grid->column('name', __('Name'));
-        $grid->column('title', __('Title'));
+        $grid->column('name', __('Name'))->editable();
+        $grid->column('title', __('Title'))->editable();
         $grid->column('sort', __('Sort'))->sortable();
         $grid->column('type', __('Type'));
         $grid->column('group', __('Group'));
         $grid->column('remark', __('Remark'));
-        $grid->column('value', __('Value'));
+        $grid->column('value', __('Value'))->editable();
         $grid->column('extra', __('Extra'));
         $grid->column('status', __('Status'));
         $grid->column('created_at', __('Created at'));

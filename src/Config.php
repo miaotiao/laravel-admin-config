@@ -49,7 +49,7 @@ class Config extends Extension
                 config('admin.extensions.config.name', 'config'),
                 $configControllerPath
             );
-            $router->get('system/setting', $configControllerPath.'@settingForm')->name('admin.setting');
+            $router->get('system/setting', $configControllerPath.'@settingForm')->name('admin.configSetting');
             $router->post('system/setting/save', $configControllerPath.'@settingSave');
         });
     }
