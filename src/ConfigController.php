@@ -169,7 +169,7 @@ class ConfigController
                             $formObj = $form->radio($name, $title)->options($option);
                             break;
                         case '6':
-                            $formObj = $form->datetime($name,$title)->format('YYYY-MM-DD HH:mm:ss');
+                            $formObj = $form->datetime($name, $title)->format('YYYY-MM-DD HH:mm:ss');
                             break;
                         default:
                             $formObj = $form->text($name, $title);
