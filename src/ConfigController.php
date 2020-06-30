@@ -165,7 +165,7 @@ class ConfigController
                             $formObj = $form->textarea($name, $title)->rows(3);
                             break;
                         case '5':
-                            $option = parse_config_attr($config->extra,5);
+                            $option = parse_config_attr($config->extra, 5);
                             $formObj = $form->radio($name, $title)->options($option);
                             break;
                         case '6':
