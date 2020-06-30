@@ -168,6 +168,9 @@ class ConfigController
                             $option = parse_config_attr($config->extra);
                             $formObj = $form->radio($name, $title)->options($option);
                             break;
+                        case '6':
+                            $formObj = $form->datetime($name,$title)->format('YYYY-MM-DD HH:mm:ss');
+                            break;
                         default:
                             $formObj = $form->text($name, $title);
                             break;

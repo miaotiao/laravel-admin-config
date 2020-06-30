@@ -68,7 +68,7 @@ class ConfigSeeder extends Seeder
                 'group'     => '4',
                 'remark'    => '',
                 'extra'     => '',
-                'value'     => "1:数字\r\n2:字符\r\n3:文本\r\n4:数组\r\n5:枚举",
+                'value'     => "1:数字\r\n2:字符\r\n3:文本\r\n4:数组\r\n5:枚举\r\n6:日期",
             ],
             [
                 'name'      => 'sys_config_group',

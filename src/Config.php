@@ -13,10 +13,7 @@ class Config extends Extension
             $configs = ConfigModel::where('status', 1)->get();
             $systemConf = [];
             foreach ($configs as $config) {
-                $configVal = $config->value;
-                if (($config->type == '4') && (!empty($configVal))) {
-                    $configVal = parse_config_attr($configVal);
-                }
+                $configVal = parse_config_attr($config->value,$config->type);
                 $systemConf[$config->name] = $configVal;
             }
 

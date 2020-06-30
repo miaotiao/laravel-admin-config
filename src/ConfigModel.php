@@ -3,9 +3,11 @@
 namespace Miaotiao\Config;
 
 use Illuminate\Database\Eloquent\Model;
+use Encore\Admin\Traits\DefaultDatetimeFormat;
 
 class ConfigModel extends Model
 {
+    use DefaultDatetimeFormat;
     /**
      * Settings constructor.
      *
