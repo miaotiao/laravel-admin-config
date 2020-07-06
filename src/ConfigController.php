@@ -100,19 +100,25 @@ class ConfigController
         $grid->column('name', __('Name'))->editable();
         $grid->column('title', __('Title'))->editable();
         $grid->column('sort', __('Sort'))->sortable();
-        $grid->column('type', __('Type'));
-        $grid->column('group', __('Group'));
+        $grid->column('type', __('Type'))->replace(dbConfig('sys_config_type'))->label('info');
+        $grid->column('group', __('Group'))->replace(dbConfig('sys_config_group'))->label('success');
         $grid->column('remark', __('Remark'));
-        $grid->column('value', __('Value'))->editable();
+        $grid->column('value', __('Value'))->limit(40);
         $grid->column('extra', __('Extra'));
-        $grid->column('status', __('Status'));
+        $grid->column('status', __('Status'))->bool();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
-            $filter->like('name');
-            $filter->like('title');
+            $filter->column(1 / 2, function ($filter) {
+                $filter->like('name');
+                $filter->equal('type')->select(dbConfig('sys_config_type'));
+                $filter->equal('group')->select(dbConfig('sys_config_group'));
+            })->column(1 / 2, function ($filter) {
+                $filter->like('title');
+                $filter->in('status')->checkbox([0 => '禁用', 1 => '正常']);
+            });
         });
 
         return $grid;
@@ -165,7 +171,8 @@ class ConfigController
                             $formObj = $form->textarea($name, $title)->rows(3);
                             break;
                         case '5':
-                            $option = parse_config_attr($config->extra, 5);
+                            //  因为是枚举类型，所以按照数组的方式解析额外字段
+                            $option = parse_config_attr($config->extra, 4);
                             $formObj = $form->radio($name, $title)->options($option);
                             break;
                         case '6':
@@ -205,9 +212,7 @@ class ConfigController
      * 保存配置.
      *
      * @param Request $request
-     *
      * @throws \Exception
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function settingSave(Request $request)
