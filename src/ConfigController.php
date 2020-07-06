@@ -212,7 +212,9 @@ class ConfigController
      * 保存配置.
      *
      * @param Request $request
+     *
      * @throws \Exception
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function settingSave(Request $request)
