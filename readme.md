@@ -7,18 +7,7 @@ $ composer require miaotiao/config
 
 $ php artisan vendor:publish --provider="Miaotiao\Config\ConfigServiceProvider"
 
-$ php artisan migrate
-
-$ composer dump-autoload
-
-$ php artisan db:seed --class=ConfigSeeder
-```
-
-
-Then run: 
-
-```
-$ php artisan admin:import config
+$ php artisan miaotiao:lara-admin-config
 ```
 
 Open `http://your-host/admin/setting`

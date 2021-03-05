@@ -1,4 +1,5 @@
 <?php
+namespace Miaotiao\Config\Database;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
