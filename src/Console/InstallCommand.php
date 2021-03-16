@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @Author iwill
  * @Datetime 2021/3/4 20:54
  */
@@ -30,9 +29,8 @@ class InstallCommand extends Command
         //  初级播种
         $this->call('db:seed', ['--class' => \Miaotiao\Config\Database\ConfigSeeder::class]);
         // 导入配置
-        $this->call('admin:import',['extension'=>'config']);
+        $this->call('admin:import', ['extension'=>'config']);
 
         $this->info('laravel-admin-config install success');
     }
-
 }
