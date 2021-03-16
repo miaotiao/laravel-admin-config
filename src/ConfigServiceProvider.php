@@ -16,14 +16,13 @@ class ConfigServiceProvider extends ServiceProvider
     {
         try {
             if ($this->app->runningInConsole()) {
-                $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+                $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-                $this->publishes([__DIR__ . '/../database/seeds' => database_path('seeds')]);
+                $this->publishes([__DIR__.'/../database/seeds' => database_path('seeds')]);
 
                 $this->commands([
                     InstallCommand::class,
                 ]);
-
             } else {
                 Config::load();
             }
@@ -32,5 +31,4 @@ class ConfigServiceProvider extends ServiceProvider
             //
         }
     }
-
 }
