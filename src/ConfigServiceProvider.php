@@ -23,9 +23,8 @@ class ConfigServiceProvider extends ServiceProvider
                 $this->commands([
                     InstallCommand::class,
                 ]);
-            } else {
-                Config::load();
             }
+            Config::load();
             Config::boot();
         } catch (\Exception $e) {
             //
